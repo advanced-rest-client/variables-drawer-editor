@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>variables-drawer-editor test</title>
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../variables-drawer-editor.html">
+</head>
+<body>
+  <test-fixture id="Basic">
+    <template>
+      <variables-drawer-editor></variables-drawer-editor>
+    </template>
+  </test-fixture>
+
+  <script>
+  suite('variables-drawer-editor', () => {
+    let element;
+    setup(() => {
+      element = fixture('Basic');
+    });
+
+    test('Open the element', function(done) {
+      element.opened = true;
+      setTimeout(function() {
+        const display = getComputedStyle(element).getPropertyValue('display');
+        assert.equal(display, 'block');
+        done();
+      }, 100);
+    });
+
+    test('Click on the close icon closes the drawer', function() {
+      element.opened = true;
+      const button = element.shadowRoot.querySelector('paper-icon-button');
+      button.click();
+      const display = getComputedStyle(element).getPropertyValue('display');
+      assert.equal(display, 'none');
+    });
+  });
+  </script>
+</body>
+</html>

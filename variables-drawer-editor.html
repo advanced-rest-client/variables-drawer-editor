@@ -11,7 +11,8 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/legacy/class.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../variables-editor/variables-editor.html">
@@ -78,9 +79,10 @@ Custom property | Description | Default
     <variables-editor></variables-editor>
   </template>
   <script>
-  Polymer({
-    is: 'variables-drawer-editor',
-    behaviors: [Polymer.IronOverlayBehavior]
-  });
+  class VariablesDrawerEditor extends
+    Polymer.mixinBehaviors([Polymer.IronOverlayBehavior], Polymer.Element) {
+    static get is() { return 'variables-drawer-editor';}
+  }
+  window.customElements.define(VariablesDrawerEditor.is, VariablesDrawerEditor);
   </script>
 </dom-module>
