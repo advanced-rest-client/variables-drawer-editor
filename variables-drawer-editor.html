@@ -55,7 +55,7 @@ the License.
       <h2>Variables</h2>
       <paper-icon-button icon="arc:close" on-click="close" class="close-button" title="Close variables editor" alt="Close variables icon"></paper-icon-button>
     </div>
-    <variables-editor></variables-editor>
+    <variables-editor environment="{{environment}}" environments="{{environments}}" variables="{{variables}}" has-variables="{{hasVariables}}" has-environments="{{hasEnvironments}}"></variables-editor>
   </template>
   <script>
   /**
@@ -96,6 +96,39 @@ the License.
     Polymer.mixinBehaviors([Polymer.IronOverlayBehavior], Polymer.Element) {
     static get is() {
       return 'variables-drawer-editor';
+    }
+
+    static get properties() {
+      return {
+        /**
+         * Currently activated environment.
+         */
+        environment: String,
+        /**
+         * List of all available environments.
+         * @type {Array<Object>}
+         */
+        environments: Array,
+        /**
+         * List of available variables for the environment.
+         * @type {Array<Object>}
+         */
+        variables: Array,
+        /**
+         * Computed value, true if variables are available for current
+         * environment.
+         */
+        hasVariables: Boolean,
+        /**
+         * Computed value, true if there's a list of environments set.
+         */
+        hasEnvironments: Boolean
+      };
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.setAttribute('aria-label', 'variables');
     }
   }
   window.customElements.define(VariablesDrawerEditor.is, VariablesDrawerEditor);
