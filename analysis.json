@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "A drawer like element to display variables editor.\nInternally it uses `<variables-editor>` as a main element. The drawer is rendered\nas a right hand side drawer of the application.\n\nSuggested use with `with-backdrop` attribute set. Otherwise it should be styled\nto distinguish opened element from the rest of the application.\n\n### Example\n\n```html\n<variables-drawer-editor with-backdrop></variables-drawer-editor>\n```\n\n### Styling\n\n`<variables-drawer-editor>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--variables-drawer-editor` | Mixin applied to the element | `{}`\n`--variables-drawer-editor-min-width` | Minimum width of the variables editor's drawer | `460px`\n`--variables-drawer-editor-width` | Width of the drawer | `40%`\n`--variables-drawer-editor-background-color` | Background color od the drawer | `#fff`\n`--arc-font-headline` | Mixin applied to the title of the drawer | `{}`\n`--variables-drawer-editor-close-color` | Color of the close icon | ``\n`--variables-drawer-editor-close-background-color` | Background color of the close icon | ``",
+      "summary": "",
+      "path": "variables-drawer-editor.html",
+      "properties": [],
+      "methods": [],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 94,
+          "column": 2
+        },
+        "end": {
+          "line": 99,
+          "column": 3
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "name": "UiElements.VariablesDrawerEditor",
+      "attributes": [],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "variables-drawer-editor",
+      "mixins": [
+        "Polymer.IronOverlayBehavior"
+      ]
+    }
+  ]
+}
