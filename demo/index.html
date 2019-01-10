@@ -1,59 +1,61 @@
 <!doctype html>
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-
   <title>variables-drawer-editor demo</title>
-
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../app-pouchdb/pouchdb.html">
   <link rel="import" href="../../variables-manager/variables-manager.html">
   <link rel="import" href="../../variables-evaluator/variables-evaluator.html">
   <link rel="import" href="../../paper-button/paper-button.html">
+  <link rel="import" href="../../neon-animation/web-animations.html">
+  <link rel="import" href="../../arc-models/variables-model.html">
   <link rel="import" href="../variables-drawer-editor.html">
 
-  <style is="custom-style" include="demo-pages-shared-styles">
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+    :root {
+      --primary-color: #00A2DF;
+      --action-button: {
+        background-color: var(--primary-color);
+        background-image: none;
+        color: white;
+        transition: background-color 300ms linear;
+      };
 
-    .vertical-section-container {
-      max-width: 600px;
+      --action-button-hover: {
+        background-color: #04b3f5;
+        background-image: none;
+        color: white;
+      };
+
+      --arc-font-body1: {
+        @apply --paper-font-body1;
+      };
     }
-
-  </style>
+    </style>
+  </custom-style>
 </head>
 <body unresolved>
+  <variables-model></variables-model>
+  <variables-manager></variables-manager>
+  <variables-evaluator></variables-evaluator>
   <div class="vertical-section-container centered">
-    <variables-manager></variables-manager>
-    <variables-evaluator></variables-evaluator>
-
     <h3>The `variables-drawer-editor`</h3>
     <demo-snippet>
-      <template is="dom-bind" id="demo">
-        <variables-drawer-editor id="drawer"></variables-drawer-editor>
-        <paper-button raised on-tap="open">Open</paper-button>
-        <script>
-        document.getElementById('demo').open = function() {
-          document.getElementById('drawer').opened = true;
-        };
-        </script>
+      <template>
+        <variables-drawer-editor id="drawer1"></variables-drawer-editor>
+        <paper-button raised id="trigger1">Open</paper-button>
       </template>
     </demo-snippet>
 
     <h3>Styled</h3>
     <demo-snippet>
-      <template is="dom-bind" id="demo2">
+      <template>
         <variables-drawer-editor id="drawer2" class="styled" with-backdrop></variables-drawer-editor>
         <style is="custom-style">
         .styled {
@@ -64,14 +66,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
         </style>
-        <paper-button raised on-tap="open">Open</paper-button>
-        <script>
-        document.getElementById('demo2').open = function() {
-          document.getElementById('drawer2').opened = true;
-        };
-        </script>
+        <paper-button raised id="trigger2">Open</paper-button>
       </template>
     </demo-snippet>
   </div>
+  <script>
+  window.addEventListener('WebComponentsReady', () => {
+    document.getElementById('trigger1').addEventListener('click', () => {
+      document.getElementById('drawer1').opened = true;
+    });
+    document.getElementById('trigger2').addEventListener('click', () => {
+      document.getElementById('drawer2').opened = true;
+    });
+  });
+  </script>
 </body>
 </html>

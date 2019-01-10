@@ -1,6 +1,6 @@
 <!--
 @license
-Copyright 2016 The Advanced REST client authors <arc@mulesoft.com>
+Copyright 2018 The Advanced REST client authors <arc@mulesoft.com>
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
 the License at
@@ -11,40 +11,14 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/legacy/class.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../variables-editor/variables-editor.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../arc-icons/arc-icons.html">
-<!--
-A drawer like element to display variables editor.
-Internally it uses `<variables-editor>` as a main element. The drawer is rendered
-as a right hand side drawer of the application.
 
-Suggested use with `with-backdrop` attribute set. Otherwise it should be styled
-to distinguish opened element from the rest of the application.
-
-### Example
-```
-<variables-drawer-editor with-backdrop></variables-drawer-editor>
-```
-
-### Styling
-`<variables-drawer-editor>` provides the following custom properties and mixins for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--variables-drawer-editor` | Mixin applied to the element | `{}`
-`--variables-drawer-editor-min-width` | Minimum width of the variables editor's drawer | `460px`
-`--variables-drawer-editor-width` | Width of the drawer | `40%`
-`--variables-drawer-editor-background-color` | Background color od the drawer | `#fff`
-`--arc-font-headline` | Mixin applied to the title of the drawer | `{}`
-
-@group UI Elements
-@element variables-drawer-editor
-@demo demo/index.html
--->
 <dom-module id="variables-drawer-editor">
   <template>
     <style>
@@ -63,6 +37,7 @@ Custom property | Description | Default
     .title-area {
       @apply --layout-horizontal;
       @apply --layout-center;
+      @apply --arc-font-body1;
       padding: 0 12px;
     }
 
@@ -70,17 +45,92 @@ Custom property | Description | Default
       @apply --arc-font-headline;
       @apply --layout-flex;
     }
+
+    .close-button {
+      color: var(--variables-drawer-editor-close-color);
+      background-color: var(--variables-drawer-editor-close-background-color);
+    }
     </style>
     <div class="title-area">
       <h2>Variables</h2>
-      <paper-icon-button icon="arc:close" on-tap="close" title="Close variables editor" alt="Close variables icon"></paper-icon-button>
+      <paper-icon-button icon="arc:close" on-click="close" class="close-button" title="Close variables editor" alt="Close variables icon"></paper-icon-button>
     </div>
-    <variables-editor></variables-editor>
+    <variables-editor environment="{{environment}}" environments="{{environments}}" variables="{{variables}}" has-variables="{{hasVariables}}" has-environments="{{hasEnvironments}}"></variables-editor>
   </template>
   <script>
-  Polymer({
-    is: 'variables-drawer-editor',
-    behaviors: [Polymer.IronOverlayBehavior]
-  });
+  /**
+   * A drawer like element to display variables editor.
+   * Internally it uses `<variables-editor>` as a main element. The drawer is rendered
+   * as a right hand side drawer of the application.
+   *
+   * Suggested use with `with-backdrop` attribute set. Otherwise it should be styled
+   * to distinguish opened element from the rest of the application.
+   *
+   * ### Example
+   *
+   * ```html
+   * <variables-drawer-editor with-backdrop></variables-drawer-editor>
+   * ```
+   *
+   * ### Styling
+   *
+   * `<variables-drawer-editor>` provides the following custom properties and mixins for styling:
+   *
+   * Custom property | Description | Default
+   * ----------------|-------------|----------
+   * `--variables-drawer-editor` | Mixin applied to the element | `{}`
+   * `--variables-drawer-editor-min-width` | Minimum width of the variables editor's drawer | `460px`
+   * `--variables-drawer-editor-width` | Width of the drawer | `40%`
+   * `--variables-drawer-editor-background-color` | Background color od the drawer | `#fff`
+   * `--arc-font-headline` | Mixin applied to the title of the drawer | `{}`
+   * `--variables-drawer-editor-close-color` | Color of the close icon | ``
+   * `--variables-drawer-editor-close-background-color` | Background color of the close icon | ``
+   *
+   * @memberof UiElements
+   * @customElement
+   * @polymer
+   * @demo demo/index.html
+   * @appliesMixin Polymer.IronOverlayBehavior
+   */
+  class VariablesDrawerEditor extends
+    Polymer.mixinBehaviors([Polymer.IronOverlayBehavior], Polymer.Element) {
+    static get is() {
+      return 'variables-drawer-editor';
+    }
+
+    static get properties() {
+      return {
+        /**
+         * Currently activated environment.
+         */
+        environment: String,
+        /**
+         * List of all available environments.
+         * @type {Array<Object>}
+         */
+        environments: Array,
+        /**
+         * List of available variables for the environment.
+         * @type {Array<Object>}
+         */
+        variables: Array,
+        /**
+         * Computed value, true if variables are available for current
+         * environment.
+         */
+        hasVariables: Boolean,
+        /**
+         * Computed value, true if there's a list of environments set.
+         */
+        hasEnvironments: Boolean
+      };
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.setAttribute('aria-label', 'variables');
+    }
+  }
+  window.customElements.define(VariablesDrawerEditor.is, VariablesDrawerEditor);
   </script>
 </dom-module>
