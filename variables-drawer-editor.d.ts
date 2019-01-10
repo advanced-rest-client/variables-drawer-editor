@@ -49,6 +49,33 @@ declare namespace UiElements {
   class VariablesDrawerEditor extends
     Polymer.IronOverlayBehavior(
     Object) {
+
+    /**
+     * Currently activated environment.
+     */
+    environment: string|null|undefined;
+
+    /**
+     * List of all available environments.
+     */
+    environments: Array<object|null>|null;
+
+    /**
+     * List of available variables for the environment.
+     */
+    variables: Array<object|null>|null;
+
+    /**
+     * Computed value, true if variables are available for current
+     * environment.
+     */
+    hasVariables: boolean|null|undefined;
+
+    /**
+     * Computed value, true if there's a list of environments set.
+     */
+    hasEnvironments: boolean|null|undefined;
+    connectedCallback(): void;
   }
 }
 
