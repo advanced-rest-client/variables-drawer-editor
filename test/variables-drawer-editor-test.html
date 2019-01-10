@@ -22,7 +22,7 @@
       element = fixture('Basic');
     });
 
-    test('Open the element', function(done) {
+    test('Opens the element', function(done) {
       element.opened = true;
       setTimeout(function() {
         const display = getComputedStyle(element).getPropertyValue('display');
