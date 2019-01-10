@@ -1,6 +1,6 @@
 {
-  "name": "variables-drawer-editor",
-  "version": "2.0.0-preview",
+  "name": "@advanced-rest-client/variables-drawer-editor",
+  "version": "2.0.0",
   "license": "Apache-2.0",
   "description": "A drawer like element to display variables editor",
   "devDependencies": {
