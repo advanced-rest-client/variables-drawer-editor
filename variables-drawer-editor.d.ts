@@ -5,16 +5,11 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   variables-drawer-editor.html
+ *   variables-drawer-editor.js
  */
 
-/// <reference path="../polymer/types/polymer-element.d.ts" />
-/// <reference path="../polymer/types/lib/legacy/class.d.ts" />
-/// <reference path="../paper-icon-button/paper-icon-button.d.ts" />
-/// <reference path="../iron-overlay-behavior/iron-overlay-behavior.d.ts" />
-/// <reference path="../variables-editor/variables-editor.d.ts" />
-/// <reference path="../iron-flex-layout/iron-flex-layout.d.ts" />
-/// <reference path="../arc-icons/arc-icons.d.ts" />
+
+// tslint:disable:variable-name Describing an API that's defined elsewhere.
 
 declare namespace UiElements {
 
@@ -79,6 +74,11 @@ declare namespace UiElements {
   }
 }
 
-interface HTMLElementTagNameMap {
-  "variables-drawer-editor": UiElements.VariablesDrawerEditor;
+declare global {
+
+  interface HTMLElementTagNameMap {
+    "variables-drawer-editor": UiElements.VariablesDrawerEditor;
+  }
 }
+
+export {};

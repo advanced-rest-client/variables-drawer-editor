@@ -3,6 +3,7 @@
     "tasks/*",
     "demo/*",
     "test/*",
+    "dev-lib/*",
     "index.html"
   ]
 }

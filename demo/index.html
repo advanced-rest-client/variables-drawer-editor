@@ -1,20 +1,19 @@
-<!doctype html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
   <title>variables-drawer-editor demo</title>
-  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../app-pouchdb/pouchdb.html">
-  <link rel="import" href="../../variables-manager/variables-manager.html">
-  <link rel="import" href="../../variables-evaluator/variables-evaluator.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
-  <link rel="import" href="../../neon-animation/web-animations.html">
-  <link rel="import" href="../../arc-models/variables-model.html">
-  <link rel="import" href="../variables-drawer-editor.html">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../dev-lib/jexl.min.js"></script>
+  <script src="../../../web-animations-js/web-animations-next.min.js"></script>
+
+  <script type="module" src="../../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+  <script type="module" src="../../../@advanced-rest-client/variables-manager/variables-manager.js"></script>
+  <script type="module" src="../../../@advanced-rest-client/variables-evaluator/variables-evaluator.js"></script>
+  <script type="module" src="../../../@polymer/paper-button/paper-button.js"></script>
+  <script type="module" src="../../../@advanced-rest-client/arc-models/variables-model.js"></script>
+  <script type="module" src="../variables-drawer-editor.js"></script>
 
   <custom-style>
     <style is="custom-style" include="demo-pages-shared-styles">
@@ -40,23 +39,23 @@
     </style>
   </custom-style>
 </head>
-<body unresolved>
+<body unresolved="">
   <variables-model></variables-model>
   <variables-manager></variables-manager>
-  <variables-evaluator></variables-evaluator>
+  <variables-evaluator jexl-path="ArcVariables.JexlDev"></variables-evaluator>
   <div class="vertical-section-container centered">
-    <h3>The `variables-drawer-editor`</h3>
+    <h3>The variables-drawer-editor</h3>
     <demo-snippet>
       <template>
         <variables-drawer-editor id="drawer1"></variables-drawer-editor>
-        <paper-button raised id="trigger1">Open</paper-button>
+        <paper-button raised="" id="trigger1">Open</paper-button>
       </template>
     </demo-snippet>
 
     <h3>Styled</h3>
     <demo-snippet>
       <template>
-        <variables-drawer-editor id="drawer2" class="styled" with-backdrop></variables-drawer-editor>
+        <variables-drawer-editor id="drawer2" class="styled" with-backdrop=""></variables-drawer-editor>
         <style is="custom-style">
         .styled {
           --variables-drawer-editor-background-color: #ECEFF1;
@@ -66,19 +65,19 @@
           }
         }
         </style>
-        <paper-button raised id="trigger2">Open</paper-button>
+        <paper-button raised="" id="trigger2">Open</paper-button>
       </template>
     </demo-snippet>
   </div>
   <script>
-  window.addEventListener('WebComponentsReady', () => {
-    document.getElementById('trigger1').addEventListener('click', () => {
-      document.getElementById('drawer1').opened = true;
+    window.addEventListener('WebComponentsReady', function() {
+      document.getElementById('trigger1').addEventListener('click', () => {
+        document.getElementById('drawer1').opened = true;
+      });
+      document.getElementById('trigger2').addEventListener('click', () => {
+        document.getElementById('drawer2').opened = true;
+      });
     });
-    document.getElementById('trigger2').addEventListener('click', () => {
-      document.getElementById('drawer2').opened = true;
-    });
-  });
   </script>
 </body>
 </html>
