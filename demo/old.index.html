@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>variables-drawer-editor demo</title>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../dev-lib/jexl.min.js"></script>
+  <script src="../../../web-animations-js/web-animations-next.min.js"></script>
+
+  <script type="module" src="../../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+  <script type="module" src="../../../@advanced-rest-client/variables-manager/variables-manager.js"></script>
+  <script type="module" src="../../../@advanced-rest-client/variables-evaluator/variables-evaluator.js"></script>
+  <script type="module" src="../../../@polymer/paper-button/paper-button.js"></script>
+  <script type="module" src="../../../@advanced-rest-client/arc-models/variables-model.js"></script>
+  <script type="module" src="../variables-drawer-editor.js"></script>
+
+</head>
+<body unresolved="">
+  <variables-model></variables-model>
+  <variables-manager></variables-manager>
+  <variables-evaluator jexl-path="ArcVariables.JexlDev"></variables-evaluator>
+  <div class="vertical-section-container centered">
+    <h3>The variables-drawer-editor</h3>
+    <demo-snippet>
+      <template>
+        <variables-drawer-editor id="drawer1"></variables-drawer-editor>
+        <paper-button raised="" id="trigger1">Open</paper-button>
+      </template>
+    </demo-snippet>
+  </div>
+  <script>
+    window.addEventListener('WebComponentsReady', function() {
+      document.getElementById('trigger1').addEventListener('click', () => {
+        document.getElementById('drawer1').opened = true;
+      });
+    });
+  </script>
+</body>
+</html>

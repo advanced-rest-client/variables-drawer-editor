@@ -5,10 +5,10 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   variables-drawer-editor.js
+ *   dev-lib/jexl.min.js
+ *   dev-lib/jexl.min.js
  */
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
 
-import {VariablesDrawerEditor} from './src/VariablesDrawerEditor.js';

@@ -9,16 +9,6 @@
 
 A drawer like element to display variables editor.
 
-## Example:
-
-```html
-<variables-drawer-editor></variables-drawer-editor>
-```
-
-## API components
-
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
-
 ## Usage
 
 ### Installation
@@ -26,54 +16,48 @@ This components is a part of [API components ecosystem](https://elements.advance
 npm install --save @advanced-rest-client/variables-drawer-editor
 ```
 
-### In an html file
-
-```html
-<html>
-  <head>
-    <script type="module">
-      import './node_modules/@advanced-rest-client/variables-drawer-editor/variables-drawer-editor.js';
-    </script>
-  </head>
-  <body>
-    <variables-drawer-editor></variables-drawer-editor>
-  </body>
-</html>
-```
-
-### In a Polymer 3 element
-
 ```js
-import {PolymerElement, html} from './node_modules/@polymer/polymer/polymer-element.js';
-import './node_modules/@advanced-rest-client/variables-drawer-editor/variables-drawer-editor.js';
+import { LitElement, html } from 'lit-element';
+import '@advanced-rest-client/variables-drawer-editor/variables-drawer-editor.js';
+import '@advanced-rest-client/variables-manager/variables-manager.js';
+import '@advanced-rest-client/variables-evaluator/variables-evaluator.js';
+import '@advanced-rest-client/arc-models/variables-model.js';
 
-class SampleElement extends PolymerElement {
-  static get template() {
+class SampleElement extends LitElement {
+  render() {
     return html`
-    <variables-drawer-editor></variables-drawer-editor>
+    <variables-editor></variables-editor>
+
+    <variables-model></variables-model>
+    <variables-manager></variables-manager>
+    <variables-evaluator jexl-path="..."></variables-evaluator>
     `;
   }
 }
 customElements.define('sample-element', SampleElement);
 ```
 
-### Installation
+
+## Development
 
 ```sh
 git clone https://github.com/advanced-rest-client/variables-drawer-editor
-cd api-url-editor
+cd variables-drawer-editor
 npm install
-npm install -g polymer-cli
 ```
 
 ### Running the demo locally
 
 ```sh
-polymer serve --npm
-open http://127.0.0.1:<port>/demo/
+npm start
 ```
 
 ### Running the tests
+
 ```sh
-polymer test --npm
+npm test
 ```
+
+## API components
+
+This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
